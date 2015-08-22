@@ -85,10 +85,28 @@ export default class Order extends React.Component {
 
   constructor(props) {
     super(props);
+    this._submit = this._submit.bind(this);
   }
 
   componentDidMount() {
     this.props.enableNavBackMode(true);
+  }
+
+  _submit() {
+    console.log('hi')
+    let ongoingOrder = {
+        id: 1,
+        products: [
+          { id: 1, name: '特調蜂蜜檸檬', amount: 1, price: 45 }
+        ],
+        pickup_addr: "捷運公館站 3 號出口",
+        pickup_time: "8/23 13:25"
+    }
+
+    this.props.setOngoingOrders(ongoingOrder);
+    window.location = "#/"
+    
+
   }
 
   render() {
@@ -97,6 +115,7 @@ export default class Order extends React.Component {
       return <Menu key={menu.id} menu={menu} />
     });
 
+    //TODO: change this depends on the button clicked
     return (
       <Grid>
         <Input type='select' label='取貨地點'>
@@ -116,7 +135,7 @@ export default class Order extends React.Component {
         </Input>
         {menuList}
         <Col style={{padding: "0"}} xs={12}>
-          <Button bsStyle="success" block>
+          <Button bsStyle="success" block onClick={this._submit}>
             送出
           </Button>
         </Col>

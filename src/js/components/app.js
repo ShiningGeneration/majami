@@ -24,6 +24,8 @@ export default class App extends React.Component {
       ongoingOrders: [],
       expiredOrders: [],
     }
+    this._setOngoingOrders = this._setOngoingOrders.bind(this)
+    this._setExpiredOrders = this._setExpiredOrders.bind(this)
   }
 
   _setOngoingOrders(ongoingOrders){
