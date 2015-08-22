@@ -1,18 +1,8 @@
 import React from 'react';
 
-import Button from 'react-bootstrap/lib/Button';
-import Col from 'react-bootstrap/lib/Col';
-import Input from 'react-bootstrap/lib/Input';
-import Label from 'react-bootstrap/lib/Label';
-import Modal from 'react-bootstrap/lib/Modal';
-import Panel from 'react-bootstrap/lib/Panel';
-import PanelGroup from 'react-bootstrap/lib/PanelGroup';
-import Row from 'react-bootstrap/lib/Row';
-import Table from 'react-bootstrap/lib/Table';
 import Grid from 'react-bootstrap/lib/Grid';
-import Glyphicon from 'react-bootstrap/lib/Glyphicon';
-import ListGroup from 'react-bootstrap/lib/ListGroup';
-import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
+
+import Menu from './menu';
 
 var data = [{
   name: "找好茶",
@@ -94,110 +84,14 @@ export default class Order extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.enableNavBackMode(true);
+  }
+
   render() {
-    let style = {
-      firstItem: {
-        border: '0',
-        borderRadius: '0',
-        padding: '0'
-      },
-      notFirstItem: {
-        border: '0',
-        borderRadius: '0',
-        padding: '0',
-        borderTop: '1px solid #ddd'
-      },
-      priceField: {
-        textAlign: 'right'
-      },
-      plusBtn: {
-        float: 'right'
-      },
-      minusBtn: {
-        float: 'left'
-      },
-      optionRow: {
-        paddingBottom: '1em'
-      },
-      typeName: {
-        margin: '0',
-        marginBottom: '10px'
-      }
-    };
 
-    let genOption = function (obj) {
-      let id = obj.id, option = obj.option, price = obj.price;
-      return (
-        <div key={id}>
-          <Row style={style.optionRow}>
-            <Col xs={6}>
-              <Label>{option}</Label>
-            </Col>
-            <Col xs={6} style={style.priceField}>
-              <Label>{"NT. " + price}</Label>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={2}>
-              <Button style={style.minusBtn} bsStyle="primary">
-                <Glyphicon glyph='minus' />
-              </Button>
-            </Col>
-            <Col xs={8}>
-                <Input defaultValue="0" bsSize="small" type="number" />
-            </Col>
-            <Col xs={2}>
-              <Button style={style.plusBtn} bsStyle="primary">
-                <Glyphicon glyph='plus' />
-              </Button>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-                <Input placeholder="備註" bsSize="small" type="text" />
-            </Col>
-          </Row>
-        </div>
-      );
-    };
-
-    let genMenuItem = function (item) {
-
-      let itemName = item.name, itemId = item.id;
-      let optionData = new Array();
-
-      for (let i = 0; i < item.price.length; ++i) {
-        optionData.push({
-          id: i,
-          option: i < item.option.length ? item.option[i] : itemName,
-          price: item.price[i]
-        });
-      }
-
-      return (
-        <ListGroupItem key={itemId} style={itemId == 0 ? style.firstItem : style.notFirstItem}>
-          <Row>
-            <Col xs={12}>
-              <h4>{itemName}</h4>
-            </Col>
-          </Row>
-          {optionData.map(genOption)}
-        </ListGroupItem>
-      );
-    }
-
-
-    this.menu = data.map(menu => {
-      let content = menu.content;
-
-      return (
-        <div key={menu.id}>
-          <h2 style={style.typeName}><Glyphicon glyph="triangle-bottom" /> {menu.name}</h2>
-          <ListGroup>
-            {menu.content.map(genMenuItem)}
-          </ListGroup>
-        </div>
-      );
+    let menuList = data.map(menu => {
+      return <Menu key={menu.id} menu={menu} />
     });
 
     return (
@@ -216,7 +110,7 @@ export default class Order extends React.Component {
           <option value='favorite5'>40 分鐘</option>
           <option value='favorite6'>50 分鐘</option>
         </Input>
-        {this.menu}
+        {menuList}
       </Grid>
     );
   }
