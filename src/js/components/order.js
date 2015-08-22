@@ -202,6 +202,20 @@ export default class Order extends React.Component {
 
     return (
       <Grid>
+        <Input type='select' label='取貨地點'>
+          <option value='current'>(目前位置)台北市大安區羅斯福路四段1號</option>
+          <option value='favorite1'>台北市中正區中山南路7號</option>
+          <option value='favorite2'>台北市信義區台北101大樓</option>
+        </Input>
+        <Input type='select' label='最多等待時間'>
+          <option value='current'>10 分鐘</option>
+          <option value='favorite1'>15 分鐘</option>
+          <option value='favorite2'>20 分鐘</option>
+          <option value='favorite3'>25 分鐘</option>
+          <option value='favorite4'>30 分鐘</option>
+          <option value='favorite5'>40 分鐘</option>
+          <option value='favorite6'>50 分鐘</option>
+        </Input>
         {this.menu}
       </Grid>
     );
