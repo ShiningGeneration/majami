@@ -7,6 +7,8 @@ import Input from 'react-bootstrap/lib/Input';
 import Row from 'react-bootstrap/lib/Row';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
+import TabbedArea from 'react-bootstrap/lib/TabbedArea';
+import TabPane from 'react-bootstrap/lib/TabPane';
 
 export default class Store extends React.Component {
 
@@ -156,7 +158,13 @@ export default class Store extends React.Component {
         </Col>
         <div>
           <Col md={10} mdOffset={1}>
-            {list}
+            <TabbedArea defaultActiveKey={1} className="half-width-tab">
+            <TabPane eventKey={1} tab='清單顯示' >
+              {this.state.list}
+            </TabPane>
+            <TabPane eventKey={2} tab='地圖顯示'>
+            </TabPane>
+            </TabbedArea>
           </Col>
         </div>
       </Row>
