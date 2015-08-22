@@ -19,7 +19,7 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <Navbar brand='Majami' toggleNavKey={0}>
+        <Navbar brand='Majami' toggleNavKey={0} inverse fixedTop>
           <CollapsibleNav eventKey={0}>
             <Nav navbar right>
               <NavItem eventKey={1} href='#account'>帳號</NavItem>
