@@ -152,9 +152,6 @@ export default class Home extends React.Component {
           <span>{`取貨地點: ${item.pickup_addr}`}</span>
           <br />
           <span>{`取貨時間: ${item.pickup_time}`}</span>
-          <span style={{marginRight: '5px', 'float': 'right'}}>
-            <Button bsStyle='info' bsSize='xsmall'>拿到了</Button>
-          </span>
         </ListGroupItem>
       );
     });
