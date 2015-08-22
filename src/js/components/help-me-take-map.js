@@ -106,16 +106,16 @@ export default class Shopmap extends React.Component {
   render() {
     let style = {
       map: {
-        height: '100%'
+        height: '100%',
+        width: '100%'
       }
     };
 
     return (
       <div>
         <Gmaps
+          style={style.map}
           ref='Gmaps'
-          width={'800px'}
-          height={'600px'}
           lat={coords.lat}
           lng={coords.lng}
           zoom={14}
