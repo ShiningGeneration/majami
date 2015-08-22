@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React from 'react'; 
 import Col from 'react-bootstrap/lib/Col';
 import Grid from 'react-bootstrap/lib/Grid';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
@@ -18,105 +17,6 @@ export default class Home extends React.Component {
 
   constructor(props) {
     super(props);
-
-    let ordereds_help_me_take = [
-      {
-        id: 1,
-        store: '茶湯會',
-        products: [
-          { id: 1, name: '翡翠檸檬', amount: 3, price: 49 },
-          { id: 2, name: '珍珠奶茶', amount: 2, price: 45 }
-        ],
-        pickup_addr: "捷運公館站 2 號出口",
-        pickup_time: "8/23 13:00"
-      },
-      {
-        id: 2,
-        store: '悟饕池上飯包',
-        products: [
-          { id: 1, name: '排骨飯包', amount: 4, price: 75 },
-          { id: 2, name: '焢肉飯包', amount: 5, price: 75 },
-        ],
-        pickup_addr: "台大正門口",
-        pickup_time: "8/23 23:30"
-      }
-    ];
-
-    let expireds_help_me_take = [
-      {
-        id: 1,
-        store: '50嵐',
-        products: [
-          { id: 1, name: '文山青茶', amount: 3, price: 20 },
-          { id: 2, name: '波霸奶茶', amount: 4, price: 30 }
-        ],
-        pickup_addr: "捷運公館站 2 號出口",
-        pickup_time: "8/21 13:00"
-      },
-      {
-        id: 2,
-        store: '楊董燒肉便當店',
-        products: [
-          { id: 1, name: '雞排飯包', amount: 4, price: 80 },
-          { id: 2, name: '招牌飯包', amount: 2, price: 75 },
-        ],
-        pickup_addr: "台大正門口",
-        pickup_time: "8/21 23:30"
-      }
-    ];
-
-    let ordereds_i_help_take = [
-      {
-        id: 1,
-        store: '茶湯會',
-        products: [
-          { id: 1, name: '翡翠檸檬', amount: 3, price: 49 },
-          { id: 2, name: '珍珠奶茶', amount: 2, price: 45 }
-        ],
-        pickup_addr: "捷運公館站 2 號出口",
-        pickup_time: "8/23 13:00"
-      },
-      {
-        id: 2,
-        store: '悟饕池上飯包',
-        products: [
-          { id: 1, name: '排骨飯包', amount: 4, price: 75 },
-          { id: 2, name: '焢肉飯包', amount: 5, price: 75 },
-        ],
-        pickup_addr: "台大正門口",
-        pickup_time: "8/23 23:30"
-      }
-    ];
-
-    let expireds_i_help_take = [
-      {
-        id: 1,
-        store: '50嵐',
-        products: [
-          { id: 1, name: '文山青茶', amount: 3, price: 20 },
-          { id: 2, name: '波霸奶茶', amount: 4, price: 30 }
-        ],
-        pickup_addr: "捷運公館站 2 號出口",
-        pickup_time: "8/21 13:00"
-      },
-      {
-        id: 2,
-        store: '楊董燒肉便當店',
-        products: [
-          { id: 1, name: '雞排飯包', amount: 4, price: 80 },
-          { id: 2, name: '招牌飯包', amount: 2, price: 75 },
-        ],
-        pickup_addr: "台大正門口",
-        pickup_time: "8/21 23:30"
-      }
-    ]; 
-
-    this.state = {
-      ordereds_i_help_take: ordereds_i_help_take,
-      ordereds_help_me_take: ordereds_help_me_take,
-      expireds_i_help_take: expireds_i_help_take,
-      expireds_help_me_take: expireds_help_me_take,
-    };
   }
 
   componentDidMount() {
@@ -137,7 +37,6 @@ export default class Home extends React.Component {
       let style = {float:"right"};
         return (
           <span key={product.id}>
-            {/*FIXME: hardcoded style*/}
             <span>{`${product.name} x${product.amount}`}</span> <span style={style}>{`NTD.${product.price}`}</span>
             <br />
           </span>
@@ -158,10 +57,10 @@ export default class Home extends React.Component {
   }
 
   render() {
-    let orderedItems_help_me_take = this.generateItems(this.state.ordereds_help_me_take, true);
-    let orderedItems_i_help_take = this.generateItems(this.state.ordereds_i_help_take, false);
-    let expiredItems_help_me_take = this.generateItems(this.state.expireds_help_me_take, true);
-    let expiredItems_i_help_take = this.generateItems(this.state.expireds_i_help_take, false);
+    let orderedItems_help_me_take = this.generateItems(this.props.gstate.ongoingOrders, true);
+    let orderedItems_i_help_take = this.generateItems(this.props.gstate.ongoingOrders, false);
+    let expiredItems_help_me_take = this.generateItems(this.props.gstate.expiredOrders, true);
+    let expiredItems_i_help_take = this.generateItems(this.props.gstate.expiredOrders, false);
 
 
     return (

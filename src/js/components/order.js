@@ -94,14 +94,15 @@ export default class Order extends React.Component {
 
   _submit() {
     console.log('hi')
-    let ongoingOrder = {
-        id: 1,
+    let ongoingOrder = [{
+        id: 3,
+        store: "清玉",
         products: [
-          { id: 1, name: '特調蜂蜜檸檬', amount: 1, price: 45 }
+          { id: 3, name: '特調蜂蜜檸檬', amount: 1, price: 45 }
         ],
         pickup_addr: "捷運公館站 3 號出口",
         pickup_time: "8/23 13:25"
-    }
+    }]
 
     this.props.setOngoingOrders(ongoingOrder);
     window.location = "#/"
