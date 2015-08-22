@@ -10,11 +10,9 @@ export default class Pickup extends React.Component {
     return (
       <form>
         <Input type='text' label='取貨地點' placeholder='請輸入取貨地點' />
-        <Input type='text' label='取貨日期' placeholder='yyyy/mm/dd' />
-        <Input type='text' label='取貨時間' placeholder='hh:mm' />
-        <Input type='textarea' label='備註' />
-        <Button onClick={this.submit}>送出</Button>
-      </form>  
+        <Input type='text' label='最多等待時間' placeholder='hh:mm' />
+        <Button bsStyle='info' onClick={this.submit}>送出</Button>
+      </form>
     );
   }
 }

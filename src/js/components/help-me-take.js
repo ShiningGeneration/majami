@@ -17,7 +17,7 @@ export default class Store extends React.Component {
 
     let list = (
       <ListGroup>
-        <ListGroupItem header='茶湯會 松山店'>
+        <ListGroupItem header='茶湯會 松山店' href='#order'>
           滿200元外送
           <br />
           台北市信義區松山路531號 / 02-2726-2886
@@ -28,7 +28,7 @@ export default class Store extends React.Component {
           <Glyphicon glyph='star' />
           <Glyphicon glyph='star' />
         </ListGroupItem>
-        <ListGroupItem header='池上飯包'>
+        <ListGroupItem header='池上飯包' href='#order'>
           滿200元外送
           <br />
           中和景新街234號 / 02-2943-2100
@@ -38,7 +38,7 @@ export default class Store extends React.Component {
           <Glyphicon glyph='star' />
           <Glyphicon glyph='star' />
         </ListGroupItem>
-        <ListGroupItem header='全祥水餃'>
+        <ListGroupItem header='全祥水餃' href='#order'>
           美麗滿分健康加分的總統水餃
           <br />
           北市汀州路二段70號 / 03-3391309
@@ -49,7 +49,7 @@ export default class Store extends React.Component {
           <Glyphicon glyph='star' />
           <Glyphicon glyph='star' />
         </ListGroupItem>
-        <ListGroupItem header='50嵐(SOGO店)'>
+        <ListGroupItem header='50嵐(SOGO店)' href='#order'>
           買十送一
           <br />
           台北市復興南路一段107巷23-3號 / 2711-3650
@@ -59,7 +59,7 @@ export default class Store extends React.Component {
           <Glyphicon glyph='star' />
           <Glyphicon glyph='star' />
         </ListGroupItem>
-        <ListGroupItem header='楊董燒肉便當店'>
+        <ListGroupItem header='楊董燒肉便當店' href='#order'>
           燒肉，雞腿王，排骨
           <br />
           新莊區富國路55號 / 0952668089
@@ -68,7 +68,7 @@ export default class Store extends React.Component {
           <Glyphicon glyph='star' />
           <Glyphicon glyph='star' />
         </ListGroupItem>
-        <ListGroupItem header='太師傅便當專賣店(興中店)'>
+        <ListGroupItem header='太師傅便當專賣店(興中店)' href='#order'>
           營養便當
           <br />
           高雄市苓雅區興中一路222號 / 07-3345252
@@ -91,7 +91,7 @@ export default class Store extends React.Component {
   _handleClick() {
     let list = (
       <ListGroup>
-        <ListGroupItem header='楊董燒肉便當店'>
+        <ListGroupItem header='楊董燒肉便當店' href='#order'>
           燒肉，雞腿王，排骨
           <br />
           新莊區富國路55號 / 0952668089
@@ -100,7 +100,7 @@ export default class Store extends React.Component {
           <Glyphicon glyph='star' />
           <Glyphicon glyph='star' />
         </ListGroupItem>
-        <ListGroupItem header='太師傅便當專賣店(興中店)'>
+        <ListGroupItem header='太師傅便當專賣店(興中店)' href='#order'>
           營養便當
           <br />
           高雄市苓雅區興中一路222號 / 07-3345252
@@ -110,7 +110,7 @@ export default class Store extends React.Component {
           <Glyphicon glyph='star' />
           <Glyphicon glyph='star' />
         </ListGroupItem>
-        <ListGroupItem header='池上飯包'>
+        <ListGroupItem header='池上飯包' href='#order'>
           滿200元外送
           <br />
           中和景新街234號 / 02-2943-2100
