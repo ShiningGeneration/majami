@@ -18,6 +18,7 @@ class NumberField extends React.Component {
 
     this.increase = this._increase.bind(this);
     this.decrease = this._decrease.bind(this);
+    this.update = this._update.bind(this);
   }
 
   _increase() {
@@ -26,6 +27,11 @@ class NumberField extends React.Component {
 
   _decrease() {
     this.setState({value: this.state.value > 0 ? this.state.value - 1 : 0});
+  }
+
+  _update(evt) {
+    let val = evt.target.value;
+    this.setState({value: val == "" ? 0 : parseInt(val)});
   }
 
   render() {
@@ -46,7 +52,7 @@ class NumberField extends React.Component {
           </Button>
         </Col>
         <Col xs={8}>
-          <Input value={this.state.value} type="text" bsSize="small" />
+          <Input value={this.state.value} onChange={this.update} type="number" bsSize="small" />
         </Col>
         <Col xs={2}>
           <Button onClick={this.increase} style={style.plusBtn} bsStyle="primary">
