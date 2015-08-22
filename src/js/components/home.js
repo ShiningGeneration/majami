@@ -14,9 +14,6 @@ import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Button from 'react-bootstrap/lib/Button';
 
-import Order from './order';
-import CreateEvent from './create-event';
-
 export default class Home extends React.Component {
 
   constructor(props) {
@@ -175,9 +172,6 @@ export default class Home extends React.Component {
           </TabbedArea>
           </Col>
         </Row>
-
-        <Order ref='order' />
-        <CreateEvent ref='createEvent' />
       </Grid>
     );
   }
