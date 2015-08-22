@@ -14,7 +14,8 @@ export default class App extends React.Component {
   render() {
     let style = {
       container: {
-        padding: '3%'
+        'margin-top': '50px',
+        'padding': '3%'
       }
     };
 
