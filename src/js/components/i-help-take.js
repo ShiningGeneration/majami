@@ -9,6 +9,7 @@ import ListGroup from 'react-bootstrap/lib/ListGroup';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import TabbedArea from 'react-bootstrap/lib/TabbedArea';
 import TabPane from 'react-bootstrap/lib/TabPane';
+import IHelpTakeMap from './i-help-take-map'
 
 export default class Store extends React.Component {
 
@@ -125,10 +126,11 @@ export default class Store extends React.Component {
         <div>
           <Col md={10} mdOffset={1}>
             <TabbedArea defaultActiveKey={1} className="half-width-tab">
-            <TabPane eventKey={1} tab='清單顯示' >
+            <TabPane eventKey={1} tab='清單顯示'>
               {this.state.list}
             </TabPane>
             <TabPane eventKey={2} tab='地圖顯示'>
+              <IHelpTakeMap />
             </TabPane>
             </TabbedArea>
           </Col>
