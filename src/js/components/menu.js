@@ -52,7 +52,7 @@ class NumberField extends React.Component {
           </Button>
         </Col>
         <Col xs={8}>
-          <Input value={this.state.value} onChange={this.update} type="text" bsSize="small" />
+          <Input value={this.state.value} onChange={this.update} type="number" bsSize="small" />
         </Col>
         <Col xs={2}>
           <Button onClick={this.increase} style={style.plusBtn} bsStyle="primary">
