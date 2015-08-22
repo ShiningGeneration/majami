@@ -100,9 +100,10 @@ export default class Order extends React.Component {
     return (
       <Grid>
         <Input type='select' label='取貨地點'>
-          <option value='current'>(目前位置)台北市大安區羅斯福路四段1號</option>
-          <option value='favorite1'>台北市中正區中山南路7號</option>
-          <option value='favorite2'>台北市信義區台北101大樓</option>
+          <option value='current'>(目前位置) 7-ELEVEN 辛亥門市</option>
+          <option value='favorite1'>7-ELEVEN 敦親門市</option>
+          <option value='favorite2'>7-ELEVEN 大台門市</option>
+          <option value='favorite3'>7-ELEVEN 溫州門市</option>
         </Input>
         <Input type='select' label='最多等待時間'>
           <option value='current'>10 分鐘</option>
