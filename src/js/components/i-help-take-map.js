@@ -80,8 +80,6 @@ export default class Shopmap extends React.Component {
         <Gmaps
           style={style.map}
           ref='Gmaps'
-          width={'800px'}
-          height={'600px'}
           lat={coords.lat}
           lng={coords.lng}
           zoom={14}
