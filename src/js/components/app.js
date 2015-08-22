@@ -23,6 +23,9 @@ export default class App extends React.Component {
       <div>
         <Navbar brand='Majami' toggleNavKey={0} inverse fixedTop>
           <CollapsibleNav eventKey={0}>
+            <Nav navbar>
+              <NavItem eventKey={1} href='#pickup'>Pickup</NavItem>
+            </Nav>
             <Nav navbar right>
               <NavItem eventKey={1} href='#account'>帳號</NavItem>
               <NavItem eventKey={2} href='#about'>關於</NavItem>
