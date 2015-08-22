@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Button from 'react-bootstrap/lib/Button';
+import Col from 'react-bootstrap/lib/Col';
 import Grid from 'react-bootstrap/lib/Grid';
 import Input from 'react-bootstrap/lib/Input';
 
@@ -112,6 +114,11 @@ export default class Order extends React.Component {
           <option value='favorite6'>50 分鐘</option>
         </Input>
         {menuList}
+        <Col style={{padding: "0"}} xs={12}>
+          <Button bsStyle="success" block>
+            送出
+          </Button>
+        </Col>
       </Grid>
     );
   }
