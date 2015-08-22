@@ -133,6 +133,10 @@ export default class Store extends React.Component {
     }, 1000);
   }
 
+  componentDidMount() {
+    this.props.enableNavBackMode(true);
+  }
+
   render() {
     let isSearching = this.state.isSearching;
     let list = this.state.list;

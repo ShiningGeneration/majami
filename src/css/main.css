@@ -2,3 +2,12 @@
   width: 50%;
 }
 
+.maja-navbar-div {
+  float: left;
+  margin-top: 15px
+}
+
+.maja-navbar-toggle {
+  float: left;
+  margin-left: 15px;
+}

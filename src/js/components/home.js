@@ -80,6 +80,10 @@ export default class Home extends React.Component {
     this.refs.createEvent.open(store);
   }
 
+  componentDidMount() {
+    this.props.enableNavBackMode(false);
+  }
+
   render() {
     let orderedItems = this.state.ordereds.map(item => {
       let products = item.products.map(product => {
@@ -140,7 +144,8 @@ export default class Home extends React.Component {
           <TabbedArea defaultActiveKey={1} className="half-width-tab">
           <TabPane eventKey={1} tab='幫我帶' >
             <br />
-            <Button bsStyle="success" style={{'margin-bottom': '1em', 'width': '100%'}}>+ 新訂單</Button>
+            <Button bsStyle="success" style={{'margin-bottom': '1em', 'width': '100%'}}
+              href='#help-me-take'>+ 新訂單</Button>
             <Panel header={'進行中的訂單'} bsStyle='info'>
               <ListGroup fill>
                 {orderedItems}
@@ -154,7 +159,8 @@ export default class Home extends React.Component {
           </TabPane>
           <TabPane eventKey={2} tab='我幫帶'>
             <br />
-            <Button bsStyle="success" style={{'margin-bottom': '1em', 'width': '100%'}}>+ 新訂單</Button>
+            <Button bsStyle="success" style={{'margin-bottom': '1em', 'width': '100%'}}
+              href='#help-me-take'>+ 新訂單</Button>
             <Panel header={'進行中的訂單'} bsStyle='info'>
               <ListGroup fill>
                 {orderedItems}

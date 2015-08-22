@@ -3,13 +3,36 @@ import RouteHandler from 'react-router/lib/components/RouteHandler';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../css/main.css'
 
+import Button from 'react-bootstrap/lib/Button';
 import CollapsibleNav from 'react-bootstrap/lib/CollapsibleNav';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 
 export default class App extends React.Component {
+
+  constructor(prop) {
+    super(prop);
+
+    this._enableNavBackMode = this._enableNavBackMode.bind(this);
+    this._goBack = this._goBack.bind(this);
+
+    this.state = {
+      useBackNav: false
+    }
+  }
+
+  _enableNavBackMode(useBackNav) {
+    this.setState({
+      useBackNav: useBackNav
+    });
+  }
+
+  _goBack() {
+    window.history.back();
+  }
 
   render() {
     let style = {
@@ -19,23 +42,35 @@ export default class App extends React.Component {
       }
     };
 
+    let listNav = (
+      <nav className='maja-navbar navbar navbar-default navbar-fixed-top'>
+        <Button type='button' className='navbar-toggle maja-navbar-toggle'>
+          <Glyphicon glyph='menu-hamburger' />
+        </Button>
+        <div className='maja-navbar-div'>Majami</div>
+      </nav>
+    );
+
+    let backNav = (
+      <nav className='maja-navbar navbar navbar-default navbar-fixed-top'>
+        <Button
+          type='button'
+          className='navbar-toggle maja-navbar-toggle'
+          onClick={this._goBack}>
+          <Glyphicon glyph='chevron-left' />
+        </Button>
+        <div className='maja-navbar-div'>Majami</div>
+      </nav>
+    );
+
+    let useBackNav = this.state.useBackNav;
+
     return (
       <div>
-        <Navbar brand='Majami' toggleNavKey={0} inverse fixedTop>
-          <CollapsibleNav eventKey={0}>
-            <Nav navbar>
-              <NavItem eventKey={1} href='#pickup'>Pickup</NavItem>
-            </Nav>
-            <Nav navbar right>
-              <NavItem eventKey={1} href='#account'>帳號</NavItem>
-              <NavItem eventKey={2} href='#about'>關於</NavItem>
-              <NavItem eventKey={3} href='#logout'>登出</NavItem>
-            </Nav>
-          </CollapsibleNav>
-        </Navbar>
+        {useBackNav ? backNav : listNav}
 
         <div style={style.container}>
-          <RouteHandler />
+          <RouteHandler enableNavBackMode={this._enableNavBackMode} />
         </div>
       </div>
     );
