@@ -13,18 +13,33 @@ import IHelpTakeMap from './i-help-take-map'
 
 export default class Store extends React.Component {
 
+  _takeMission() {
+    let ongoingOrder = [{
+        id: 3,
+        store: "清玉",
+        products: [
+          { id: 3, name: '特調蜂蜜檸檬', amount: 1, price: 45 }
+        ],
+        pickup_addr: "捷運公館站 3 號出口",
+        pickup_time: "8/23 13:25"
+    }]
+    this.props.setOngoingOrdersIHelpTake(ongoingOrder);
+    window.location = "#/";
+  }
+
   constructor(props) {
     super(props);
 
+    this._handleClick = this._handleClick.bind(this);
+    this._takeMission = this._takeMission.bind(this);
+
     let list = (
       <ListGroup>
-        <ListGroupItem header='茶湯會 松山店'>
+        <ListGroupItem header='清玉'>
           台北市信義區松山路531號 / 02-2726-2886
           <br />
           <br />
-          <span>珍珠奶茶 x5</span>
-          <br />
-          <span>清香紅茶 x3</span>
+          <span>特調蜂蜜檸檬 x1</span>
           <br />
           <br />
           <Row>
@@ -32,7 +47,7 @@ export default class Store extends React.Component {
               <Button bsStyle='info' bsSize='small' href='' block>詳細資料</Button>
             </Col>
             <Col xs={6}>
-              <Button bsStyle='info' bsSize='small' href='' block>接任務</Button>
+              <Button bsStyle='info' bsSize='small' href='' block onClick={this._takeMission}>接任務</Button>
             </Col>
           </Row>
         </ListGroupItem>
@@ -75,7 +90,6 @@ export default class Store extends React.Component {
       </ListGroup>
     );
 
-    this._handleClick = this._handleClick.bind(this);
     this.state = {
       isSearching: false,
       list: list

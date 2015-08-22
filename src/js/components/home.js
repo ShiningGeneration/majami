@@ -58,7 +58,7 @@ export default class Home extends React.Component {
 
   render() {
     let orderedItems_help_me_take = this.generateItems(this.props.gstate.ongoingOrders, true);
-    let orderedItems_i_help_take = this.generateItems(this.props.gstate.ongoingOrders, false);
+    let orderedItems_i_help_take = this.generateItems(this.props.gstate.ongoingOrdersIHelpTake, false);
     let expiredItems_help_me_take = this.generateItems(this.props.gstate.expiredOrders, true);
     let expiredItems_i_help_take = this.generateItems(this.props.gstate.expiredOrders, false);
 
