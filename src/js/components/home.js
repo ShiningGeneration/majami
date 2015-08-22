@@ -123,99 +123,46 @@ export default class Home extends React.Component {
     this.props.enableNavBackMode(false);
   }
 
+  generateItems(ordereds, withGotItButton) {
+    let button;
+    if (withGotItButton) {
+      button = (
+        <span style={{marginRight: '5px', 'float': 'right'}}>
+          <Button bsStyle='info' bsSize='xsmall'>拿到了</Button>
+        </span>
+      );
+    }
+    return ordereds.map(item => {
+      let products = item.products.map(product => {
+      let style = {float:"right"};
+        return (
+          <span key={product.id}>
+            {/*FIXME: hardcoded style*/}
+            <span>{`${product.name} x${product.amount}`}</span> <span style={style}>{`NTD.${product.price}`}</span>
+            <br />
+          </span>
+        );
+      });
+
+      return (
+        <ListGroupItem
+          key={item.id} header={item.store}>
+            {products}
+          <span>{`取貨地點: ${item.pickup_addr}`}</span>
+          <br />
+          <span>{`取貨時間: ${item.pickup_time}`}</span>
+          {button}
+        </ListGroupItem>
+      );
+    });
+  }
+
   render() {
-    let orderedItems_help_me_take = this.state.ordereds_help_me_take.map(item => {
-      let products = item.products.map(product => {
-      let style = {float:"right"};
-        return (
-          <span key={product.id}>
-            {/*FIXME: hardcoded style*/}
-            <span>{`${product.name} x${product.amount}`}</span> <span style={style}>{`NTD.${product.price}`}</span>
-            <br />
-          </span>
-        );
-      });
+    let orderedItems_help_me_take = this.generateItems(this.state.ordereds_help_me_take, true);
+    let orderedItems_i_help_take = this.generateItems(this.state.ordereds_i_help_take, false);
+    let expiredItems_help_me_take = this.generateItems(this.state.expireds_help_me_take, true);
+    let expiredItems_i_help_take = this.generateItems(this.state.expireds_i_help_take, false);
 
-      return (
-        <ListGroupItem
-          key={item.id} header={item.store}>
-            {products}
-          <span>{`取貨地點: ${item.pickup_addr}`}</span>
-          <br />
-          <span>{`取貨時間: ${item.pickup_time}`}</span>
-          <span style={{marginRight: '5px', 'float': 'right'}}>
-            <Button bsStyle='info' bsSize='xsmall'>拿到了</Button>
-          </span>
-        </ListGroupItem>
-      );
-    });
-    let orderedItems_i_help_take = this.state.ordereds_i_help_take.map(item => {
-      let products = item.products.map(product => {
-      let style = {float:"right"};
-        return (
-          <span key={product.id}>
-            {/*FIXME: hardcoded style*/}
-            <span>{`${product.name} x${product.amount}`}</span> <span style={style}>{`NTD.${product.price}`}</span>
-            <br />
-          </span>
-        );
-      });
-
-      return (
-        <ListGroupItem
-          key={item.id} header={item.store}>
-            {products}
-          <span>{`取貨地點: ${item.pickup_addr}`}</span>
-          <br />
-          <span>{`取貨時間: ${item.pickup_time}`}</span>
-        </ListGroupItem>
-      );
-    });
-
-    let expiredItems_i_help_take = this.state.expireds_i_help_take.map(item => {
-      let products = item.products.map(product => {
-      let style = {float:"right"};
-        return (
-          <span key={product.id}>
-            {/*FIXME: hardcoded style*/}
-            <span>{`${product.name} x${product.amount}`}</span> <span style={style}>{`NTD.${product.price}`}</span>
-            <br />
-          </span>
-        );
-      });
-
-      return (
-        <ListGroupItem
-          key={item.id} header={item.store}>
-            {products}
-          <span>{`取貨地點: ${item.pickup_addr}`}</span>
-          <br />
-          <span>{`取貨時間: ${item.pickup_time}`}</span>
-        </ListGroupItem>
-      );
-    });
-    let expiredItems_help_me_take = this.state.expireds_help_me_take.map(item => {
-      let products = item.products.map(product => {
-      let style = {float:"right"};
-        return (
-          <span key={product.id}>
-            {/*FIXME: hardcoded style*/}
-            <span>{`${product.name} x${product.amount}`}</span> <span style={style}>{`NTD.${product.price}`}</span>
-            <br />
-          </span>
-        );
-      });
-
-      return (
-        <ListGroupItem
-          key={item.id} header={item.store}>
-            {products}
-          <span>{`取貨地點: ${item.pickup_addr}`}</span>
-          <br />
-          <span>{`取貨時間: ${item.pickup_time}`}</span>
-        </ListGroupItem>
-      );
-    });
 
     return (
       <Grid>
