@@ -160,7 +160,7 @@ export default class Home extends React.Component {
           <TabPane eventKey={2} tab='我幫帶'>
             <br />
             <Button bsStyle="success" style={{'margin-bottom': '1em', 'width': '100%'}}
-              href='#help-me-take'>+ 新訂單</Button>
+              href='#i-help-take'>+ 新訂單</Button>
             <Panel header={'進行中的訂單'} bsStyle='info'>
               <ListGroup fill>
                 {orderedItems}
