@@ -68,15 +68,23 @@ export default class App extends React.Component {
     this.state = {
       useBackNav: false,
       ongoingOrders: ordereds_help_me_take,
+      ongoingOrdersIHelpTake: ordereds_help_me_take,
       expiredOrders: expireds_i_help_take,
     }
     this._prependOngoingOrders = this._prependOngoingOrders.bind(this)
+    this._prependOngoingOrdersIHelpTake = this._prependOngoingOrdersIHelpTake.bind(this)
     this._prependExpiredOrders = this._prependExpiredOrders.bind(this)
   }
 
   _prependOngoingOrders(newOrder){
     this.setState({
       ongoingOrders: newOrder.concat(this.state.ongoingOrders)
+    })
+  }
+
+  _prependOngoingOrdersIHelpTake(newOrder){
+    this.setState({
+      ongoingOrdersIHelpTake: newOrder.concat(this.state.ongoingOrdersIHelpTake)
     })
   }
 
@@ -132,7 +140,7 @@ export default class App extends React.Component {
         {useBackNav ? backNav : listNav}
 
         <div style={style.container}>
-          <RouteHandler enableNavBackMode={this._enableNavBackMode} gstate={this.state} setOngoingOrders={this._prependOngoingOrders} setExpiredOrders={this._prependExpiredOrders}/>
+          <RouteHandler enableNavBackMode={this._enableNavBackMode} gstate={this.state} setOngoingOrders={this._prependOngoingOrders} setExpiredOrders={this._prependExpiredOrders} setOngoingOrdersIHelpTake={this._prependOngoingOrdersIHelpTake}/>
         </div>
       </div>
     );
