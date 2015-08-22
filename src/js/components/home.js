@@ -19,9 +19,6 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
 
-    this._handleOrder = this._handleOrder.bind(this);
-    this._handleCreateEvent = this._handleCreateEvent.bind(this);
-
     let ordereds = [
       {
         id: 1,
@@ -66,17 +63,6 @@ export default class Home extends React.Component {
     };
   }
 
-  _handleOrder() {
-    this.refs.order.open();
-  }
-
-  _handleCreateEvent(storeId) {
-    let store = this.state.stores.find(store => {
-      return store.id === storeId;
-    });
-    this.refs.createEvent.open(store);
-  }
-
   componentDidMount() {
     this.props.enableNavBackMode(false);
   }
@@ -96,8 +82,7 @@ export default class Home extends React.Component {
 
       return (
         <ListGroupItem
-          key={item.id} header={`訂單 # ${item.id}`}
-          onClick={this._handleOrder.bind(this, item.id)}>
+          key={item.id} header={`訂單 # ${item.id}`}>
             {products}
           <span>{`取貨地點: ${item.pickup_addr}`}</span>
           <br />
@@ -120,8 +105,7 @@ export default class Home extends React.Component {
 
       return (
         <ListGroupItem
-          key={item.id} header={`訂單 # ${item.id}`}
-          onClick={this._handleOrder.bind(this, item.id)}>
+          key={item.id} header={`訂單 # ${item.id}`}>
             {products}
           <span>{`取貨地點: ${item.pickup_addr}`}</span>
           <br />
