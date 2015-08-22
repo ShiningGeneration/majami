@@ -25,6 +25,16 @@ export default class Store extends React.Component {
           <span>珍珠奶茶 x5</span>
           <br />
           <span>清香紅茶 x3</span>
+          <br />
+          <br />
+          <Row>
+            <Col xs={6}>
+              <Button bsStyle='info' bsSize='small' href='' block>詳細資料</Button>
+            </Col>
+            <Col xs={6}>
+              <Button bsStyle='info' bsSize='small' href='' block>接任務</Button>
+            </Col>
+          </Row>
         </ListGroupItem>
         <ListGroupItem header='池上飯包'>
           中和景新街234號 / 02-2943-2100
@@ -34,9 +44,17 @@ export default class Store extends React.Component {
           <br />
           <span>雞腿飯 x3</span>
           <br />
+          <br />
+          <Row>
+            <Col xs={6}>
+              <Button bsStyle='info' bsSize='small' href='' block>詳細資料</Button>
+            </Col>
+            <Col xs={6}>
+              <Button bsStyle='info' bsSize='small' href='' block>接任務</Button>
+            </Col>
+          </Row>
         </ListGroupItem>
         <ListGroupItem header='全祥水餃'>
-          <br />
           北市汀州路二段70號 / 03-3391309
           <br />
           <br />
@@ -44,6 +62,15 @@ export default class Store extends React.Component {
           <br />
           <span>陽春麵 x3</span>
           <br />
+          <br />
+          <Row>
+            <Col xs={6}>
+              <Button bsStyle='info' bsSize='small' href='' block>詳細資料</Button>
+            </Col>
+            <Col xs={6}>
+              <Button bsStyle='info' bsSize='small' href='' block>接任務</Button>
+            </Col>
+          </Row>
         </ListGroupItem>
       </ListGroup>
     );

@@ -31,7 +31,7 @@ export default class Home extends React.Component {
       {
         id: 2,
         products: [
-          { id: 1, name: '吃魚喝茶', amount: 1, price: 6000 }
+          { id: 1, name: '解放茶', amount: 1, price: 6000 }
         ],
         pickup_addr: "台大正門口",
         pickup_time: "8/23 23:30"
@@ -42,7 +42,7 @@ export default class Home extends React.Component {
       {
         id: 1,
         products: [
-          { id: 1, name: '茉莉綠茶', amount: 1, price: 100 }
+          { id: 1, name: '茉莉綠茶', amount: 10, price: 100 }
         ],
         pickup_addr: "捷運公館站 2 號出口",
         pickup_time: "8/5 13:00"
@@ -50,7 +50,7 @@ export default class Home extends React.Component {
       {
         id: 2,
         products: [
-          { id: 1, name: '吃魚喝茶', amount: 1, price: 6000 }
+          { id: 1, name: '解放茶', amount: 15, price: 6000 }
         ],
         pickup_addr: "台大正門口",
         pickup_time: "7/8 23:30"
@@ -87,6 +87,9 @@ export default class Home extends React.Component {
           <span>{`取貨地點: ${item.pickup_addr}`}</span>
           <br />
           <span>{`取貨時間: ${item.pickup_time}`}</span>
+          <span style={{marginRight: '5px', 'float': 'right'}}>
+            <Button bsStyle='info' bsSize='xsmall'>拿到了</Button>
+          </span>
         </ListGroupItem>
       );
     });
@@ -126,7 +129,7 @@ export default class Home extends React.Component {
           <TabPane eventKey={1} tab='幫我帶' >
             <br />
             <Button bsStyle="success" style={{'margin-bottom': '1em', 'width': '100%'}}
-              href='#/help-me-take'>+ 新訂單</Button>
+              href='#/help-me-take'>+ 訂東西</Button>
             <Panel header={'進行中的訂單'} bsStyle='info'>
               <ListGroup fill>
                 {orderedItems}
@@ -141,13 +144,13 @@ export default class Home extends React.Component {
           <TabPane eventKey={2} tab='我幫帶'>
             <br />
             <Button bsStyle="success" style={{'margin-bottom': '1em', 'width': '100%'}}
-              href='#i-help-take'>+ 新訂單</Button>
-            <Panel header={'進行中的訂單'} bsStyle='info'>
+              href='#i-help-take'>+ 接任務</Button>
+            <Panel header={'進行中的幫帶任務'} bsStyle='info'>
               <ListGroup fill>
                 {orderedItems}
               </ListGroup>
             </Panel>
-            <Panel header={'歷史訂單'} bsStyle='warning'>
+            <Panel header={'已完成的幫帶任務'} bsStyle='warning'>
               <ListGroup fill>
                 {expiredItems}
               </ListGroup>
