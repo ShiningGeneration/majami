@@ -28567,12 +28567,67 @@
 	    this._enableNavBackMode = this._enableNavBackMode.bind(this);
 	    this._goBack = this._goBack.bind(this);
 
+	    var ordereds_help_me_take = [{
+	      id: 1,
+	      store: '茶湯會',
+	      products: [{ id: 1, name: '翡翠檸檬', amount: 3, price: 49 }, { id: 2, name: '珍珠奶茶', amount: 2, price: 45 }],
+	      pickup_addr: "捷運公館站 2 號出口",
+	      pickup_time: "8/23 13:00"
+	    }, {
+	      id: 2,
+	      store: '悟饕池上飯包',
+	      products: [{ id: 1, name: '排骨飯包', amount: 4, price: 75 }, { id: 2, name: '焢肉飯包', amount: 5, price: 75 }],
+	      pickup_addr: "台大正門口",
+	      pickup_time: "8/23 23:30"
+	    }];
+
+	    var expireds_i_help_take = [{
+	      id: 1,
+	      store: '50嵐',
+	      products: [{ id: 1, name: '文山青茶', amount: 3, price: 20 }, { id: 2, name: '波霸奶茶', amount: 4, price: 30 }],
+	      pickup_addr: "捷運公館站 2 號出口",
+	      pickup_time: "8/21 13:00"
+	    }, {
+	      id: 2,
+	      store: '楊董燒肉便當店',
+	      products: [{ id: 1, name: '雞排飯包', amount: 4, price: 80 }, { id: 2, name: '招牌飯包', amount: 2, price: 75 }],
+	      pickup_addr: "台大正門口",
+	      pickup_time: "8/21 23:30"
+	    }];
+
 	    this.state = {
-	      useBackNav: false
+	      useBackNav: false,
+	      ongoingOrders: ordereds_help_me_take,
+	      ongoingOrdersIHelpTake: ordereds_help_me_take,
+	      expiredOrders: expireds_i_help_take
 	    };
+	    this._prependOngoingOrders = this._prependOngoingOrders.bind(this);
+	    this._prependOngoingOrdersIHelpTake = this._prependOngoingOrdersIHelpTake.bind(this);
+	    this._prependExpiredOrders = this._prependExpiredOrders.bind(this);
 	  }
 
 	  _createClass(App, [{
+	    key: '_prependOngoingOrders',
+	    value: function _prependOngoingOrders(newOrder) {
+	      this.setState({
+	        ongoingOrders: newOrder.concat(this.state.ongoingOrders)
+	      });
+	    }
+	  }, {
+	    key: '_prependOngoingOrdersIHelpTake',
+	    value: function _prependOngoingOrdersIHelpTake(newOrder) {
+	      this.setState({
+	        ongoingOrdersIHelpTake: newOrder.concat(this.state.ongoingOrdersIHelpTake)
+	      });
+	    }
+	  }, {
+	    key: '_prependExpiredOrders',
+	    value: function _prependExpiredOrders(expiredOrders) {
+	      this.setState({
+	        expireOrders: newOrder.concat(this.state.expireOrders)
+	      });
+	    }
+	  }, {
 	    key: '_enableNavBackMode',
 	    value: function _enableNavBackMode(useBackNav) {
 	      this.setState({
@@ -28636,7 +28691,7 @@
 	        _react2['default'].createElement(
 	          'div',
 	          { style: style.container },
-	          _react2['default'].createElement(_reactRouterLibComponentsRouteHandler2['default'], { enableNavBackMode: this._enableNavBackMode })
+	          _react2['default'].createElement(_reactRouterLibComponentsRouteHandler2['default'], { enableNavBackMode: this._enableNavBackMode, gstate: this.state, setOngoingOrders: this._prependOngoingOrders, setExpiredOrders: this._prependExpiredOrders, setOngoingOrdersIHelpTake: this._prependOngoingOrdersIHelpTake })
 	        )
 	      );
 	    }
@@ -32396,38 +32451,6 @@
 	    _classCallCheck(this, Home);
 
 	    _get(Object.getPrototypeOf(Home.prototype), 'constructor', this).call(this, props);
-
-	    this._handleOrder = this._handleOrder.bind(this);
-	    this._handleCreateEvent = this._handleCreateEvent.bind(this);
-
-	    var ordereds = [{
-	      id: 1,
-	      products: [{ id: 1, name: '珍珠奶茶', amount: 1, price: 100 }],
-	      pickup_addr: "捷運公館站 2 號出口",
-	      pickup_time: "8/23 13:00"
-	    }, {
-	      id: 2,
-	      products: [{ id: 1, name: '吃魚喝茶', amount: 1, price: 6000 }],
-	      pickup_addr: "台大正門口",
-	      pickup_time: "8/23 23:30"
-	    }];
-
-	    var expireds = [{
-	      id: 1,
-	      products: [{ id: 1, name: '茉莉綠茶', amount: 1, price: 100 }],
-	      pickup_addr: "捷運公館站 2 號出口",
-	      pickup_time: "8/5 13:00"
-	    }, {
-	      id: 2,
-	      products: [{ id: 1, name: '吃魚喝茶', amount: 1, price: 6000 }],
-	      pickup_addr: "台大正門口",
-	      pickup_time: "7/8 23:30"
-	    }];
-
-	    this.state = {
-	      ordereds: ordereds,
-	      expireds: expireds
-	    };
 	  }
 
 	  /*
@@ -32438,109 +32461,73 @@
 	  */
 
 	  _createClass(Home, [{
-	    key: '_handleOrder',
-	    value: function _handleOrder() {
-	      this.refs.order.open();
-	    }
-	  }, {
-	    key: '_handleCreateEvent',
-	    value: function _handleCreateEvent(storeId) {
-	      var store = this.state.stores.find(function (store) {
-	        return store.id === storeId;
-	      });
-	      this.refs.createEvent.open(store);
-	    }
-	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      this.props.enableNavBackMode(false);
 	    }
 	  }, {
+	    key: 'generateItems',
+	    value: function generateItems(ordereds, withGotItButton) {
+	      var button = undefined;
+	      if (withGotItButton) {
+	        button = _react2['default'].createElement(
+	          'span',
+	          { style: { marginRight: '5px', 'float': 'right' } },
+	          _react2['default'].createElement(
+	            _reactBootstrapLibButton2['default'],
+	            { bsStyle: 'info', bsSize: 'xsmall' },
+	            '拿到了'
+	          )
+	        );
+	      }
+	      return ordereds.map(function (item) {
+	        var products = item.products.map(function (product) {
+	          var style = { float: "right" };
+	          return _react2['default'].createElement(
+	            'span',
+	            { key: product.id },
+	            _react2['default'].createElement(
+	              'span',
+	              null,
+	              product.name + ' x' + product.amount
+	            ),
+	            ' ',
+	            _react2['default'].createElement(
+	              'span',
+	              { style: style },
+	              'NTD.' + product.price
+	            ),
+	            _react2['default'].createElement('br', null)
+	          );
+	        });
+
+	        return _react2['default'].createElement(
+	          _reactBootstrapLibListGroupItem2['default'],
+	          {
+	            key: item.id, header: item.store },
+	          products,
+	          _react2['default'].createElement(
+	            'span',
+	            null,
+	            '取貨地點: ' + item.pickup_addr
+	          ),
+	          _react2['default'].createElement('br', null),
+	          _react2['default'].createElement(
+	            'span',
+	            null,
+	            '取貨時間: ' + item.pickup_time
+	          ),
+	          button
+	        );
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _this = this;
-
-	      var orderedItems = this.state.ordereds.map(function (item) {
-	        var products = item.products.map(function (product) {
-	          var style = { float: "right" };
-	          return _react2['default'].createElement(
-	            'span',
-	            { key: product.id },
-	            _react2['default'].createElement(
-	              'span',
-	              null,
-	              product.name + ' x' + product.amount
-	            ),
-	            ' ',
-	            _react2['default'].createElement(
-	              'span',
-	              { style: style },
-	              'NTD.' + product.price
-	            ),
-	            _react2['default'].createElement('br', null)
-	          );
-	        });
-
-	        return _react2['default'].createElement(
-	          _reactBootstrapLibListGroupItem2['default'],
-	          {
-	            key: item.id, header: '訂單 # ' + item.id,
-	            onClick: _this._handleOrder.bind(_this, item.id) },
-	          products,
-	          _react2['default'].createElement(
-	            'span',
-	            null,
-	            '取貨地點: ' + item.pickup_addr
-	          ),
-	          _react2['default'].createElement('br', null),
-	          _react2['default'].createElement(
-	            'span',
-	            null,
-	            '取貨時間: ' + item.pickup_time
-	          )
-	        );
-	      });
-
-	      var expiredItems = this.state.expireds.map(function (item) {
-	        var products = item.products.map(function (product) {
-	          var style = { float: "right" };
-	          return _react2['default'].createElement(
-	            'span',
-	            { key: product.id },
-	            _react2['default'].createElement(
-	              'span',
-	              null,
-	              product.name + ' x' + product.amount
-	            ),
-	            ' ',
-	            _react2['default'].createElement(
-	              'span',
-	              { style: style },
-	              'NTD.' + product.price
-	            ),
-	            _react2['default'].createElement('br', null)
-	          );
-	        });
-
-	        return _react2['default'].createElement(
-	          _reactBootstrapLibListGroupItem2['default'],
-	          {
-	            key: item.id, header: '訂單 # ' + item.id,
-	            onClick: _this._handleOrder.bind(_this, item.id) },
-	          products,
-	          _react2['default'].createElement(
-	            'span',
-	            null,
-	            '取貨地點: ' + item.pickup_addr
-	          ),
-	          _react2['default'].createElement('br', null),
-	          _react2['default'].createElement(
-	            'span',
-	            null,
-	            '取貨時間: ' + item.pickup_time
-	          )
-	        );
-	      });
+	      var orderedItems_help_me_take = this.generateItems(this.props.gstate.ongoingOrders, true);
+	      var orderedItems_i_help_take = this.generateItems(this.props.gstate.ongoingOrdersIHelpTake, false);
+	      var expiredItems_help_me_take = this.generateItems(this.props.gstate.expiredOrders, true);
+	      var expiredItems_i_help_take = this.generateItems(this.props.gstate.expiredOrders, false);
 
 	      return _react2['default'].createElement(
 	        _reactBootstrapLibGrid2['default'],
@@ -32567,7 +32554,7 @@
 	                  _reactBootstrapLibButton2['default'],
 	                  { bsStyle: 'success', style: { 'margin-bottom': '1em', 'width': '100%' },
 	                    href: '#/help-me-take' },
-	                  '+ 新訂單'
+	                  '+ 訂東西'
 	                ),
 	                _react2['default'].createElement(
 	                  _reactBootstrapLibPanel2['default'],
@@ -32575,7 +32562,7 @@
 	                  _react2['default'].createElement(
 	                    _reactBootstrapLibListGroup2['default'],
 	                    { fill: true },
-	                    orderedItems
+	                    orderedItems_help_me_take
 	                  )
 	                ),
 	                _react2['default'].createElement(
@@ -32584,7 +32571,7 @@
 	                  _react2['default'].createElement(
 	                    _reactBootstrapLibListGroup2['default'],
 	                    { fill: true },
-	                    expiredItems
+	                    expiredItems_help_me_take
 	                  )
 	                )
 	              ),
@@ -32596,24 +32583,24 @@
 	                  _reactBootstrapLibButton2['default'],
 	                  { bsStyle: 'success', style: { 'margin-bottom': '1em', 'width': '100%' },
 	                    href: '#i-help-take' },
-	                  '+ 新訂單'
+	                  '+ 接任務'
 	                ),
 	                _react2['default'].createElement(
 	                  _reactBootstrapLibPanel2['default'],
-	                  { header: '進行中的訂單', bsStyle: 'info' },
+	                  { header: '進行中的幫帶任務', bsStyle: 'info' },
 	                  _react2['default'].createElement(
 	                    _reactBootstrapLibListGroup2['default'],
 	                    { fill: true },
-	                    orderedItems
+	                    orderedItems_i_help_take
 	                  )
 	                ),
 	                _react2['default'].createElement(
 	                  _reactBootstrapLibPanel2['default'],
-	                  { header: '歷史訂單', bsStyle: 'warning' },
+	                  { header: '已完成的幫帶任務', bsStyle: 'warning' },
 	                  _react2['default'].createElement(
 	                    _reactBootstrapLibListGroup2['default'],
 	                    { fill: true },
-	                    expiredItems
+	                    expiredItems_i_help_take
 	                  )
 	                )
 	              )
@@ -32629,7 +32616,6 @@
 
 	exports['default'] = Home;
 	module.exports = exports['default'];
-	/*FIXME: hardcoded style*/ /*FIXME: hardcoded style*/
 
 /***/ },
 /* 448 */
@@ -34122,7 +34108,7 @@
 	            { md: 10, mdOffset: 1 },
 	            _react2['default'].createElement(
 	              _reactBootstrapLibTabbedArea2['default'],
-	              { defaultActiveKey: 1, className: 'half-width-tab' },
+	              { defaultActiveKey: 2, className: 'half-width-tab' },
 	              _react2['default'].createElement(
 	                _reactBootstrapLibTabPane2['default'],
 	                { eventKey: 1, tab: '清單顯示' },
@@ -35059,30 +35045,66 @@
 	var Store = (function (_React$Component) {
 	  _inherits(Store, _React$Component);
 
+	  _createClass(Store, [{
+	    key: '_takeMission',
+	    value: function _takeMission() {
+	      var ongoingOrder = [{
+	        id: 3,
+	        store: "清玉",
+	        products: [{ id: 3, name: '特調蜂蜜檸檬', amount: 1, price: 45 }],
+	        pickup_addr: "捷運公館站 3 號出口",
+	        pickup_time: "8/23 13:25"
+	      }];
+	      this.props.setOngoingOrdersIHelpTake(ongoingOrder);
+	      window.location = "#/";
+	    }
+	  }]);
+
 	  function Store(props) {
 	    _classCallCheck(this, Store);
 
 	    _get(Object.getPrototypeOf(Store.prototype), 'constructor', this).call(this, props);
+
+	    this._handleClick = this._handleClick.bind(this);
+	    this._takeMission = this._takeMission.bind(this);
 
 	    var list = _react2['default'].createElement(
 	      _reactBootstrapLibListGroup2['default'],
 	      null,
 	      _react2['default'].createElement(
 	        _reactBootstrapLibListGroupItem2['default'],
-	        { header: '茶湯會 松山店' },
+	        { header: '清玉' },
 	        '台北市信義區松山路531號 / 02-2726-2886',
 	        _react2['default'].createElement('br', null),
 	        _react2['default'].createElement('br', null),
 	        _react2['default'].createElement(
 	          'span',
 	          null,
-	          '珍珠奶茶 x5'
+	          '特調蜂蜜檸檬 x1'
 	        ),
 	        _react2['default'].createElement('br', null),
+	        _react2['default'].createElement('br', null),
 	        _react2['default'].createElement(
-	          'span',
+	          _reactBootstrapLibRow2['default'],
 	          null,
-	          '清香紅茶 x3'
+	          _react2['default'].createElement(
+	            _reactBootstrapLibCol2['default'],
+	            { xs: 6 },
+	            _react2['default'].createElement(
+	              _reactBootstrapLibButton2['default'],
+	              { bsStyle: 'info', bsSize: 'small', href: '', block: true },
+	              '詳細資料'
+	            )
+	          ),
+	          _react2['default'].createElement(
+	            _reactBootstrapLibCol2['default'],
+	            { xs: 6 },
+	            _react2['default'].createElement(
+	              _reactBootstrapLibButton2['default'],
+	              { bsStyle: 'info', bsSize: 'small', href: '', block: true, onClick: this._takeMission },
+	              '接任務'
+	            )
+	          )
 	        )
 	      ),
 	      _react2['default'].createElement(
@@ -35102,12 +35124,34 @@
 	          null,
 	          '雞腿飯 x3'
 	        ),
-	        _react2['default'].createElement('br', null)
+	        _react2['default'].createElement('br', null),
+	        _react2['default'].createElement('br', null),
+	        _react2['default'].createElement(
+	          _reactBootstrapLibRow2['default'],
+	          null,
+	          _react2['default'].createElement(
+	            _reactBootstrapLibCol2['default'],
+	            { xs: 6 },
+	            _react2['default'].createElement(
+	              _reactBootstrapLibButton2['default'],
+	              { bsStyle: 'info', bsSize: 'small', href: '', block: true },
+	              '詳細資料'
+	            )
+	          ),
+	          _react2['default'].createElement(
+	            _reactBootstrapLibCol2['default'],
+	            { xs: 6 },
+	            _react2['default'].createElement(
+	              _reactBootstrapLibButton2['default'],
+	              { bsStyle: 'info', bsSize: 'small', href: '', block: true },
+	              '接任務'
+	            )
+	          )
+	        )
 	      ),
 	      _react2['default'].createElement(
 	        _reactBootstrapLibListGroupItem2['default'],
 	        { header: '全祥水餃' },
-	        _react2['default'].createElement('br', null),
 	        '北市汀州路二段70號 / 03-3391309',
 	        _react2['default'].createElement('br', null),
 	        _react2['default'].createElement('br', null),
@@ -35122,11 +35166,33 @@
 	          null,
 	          '陽春麵 x3'
 	        ),
-	        _react2['default'].createElement('br', null)
+	        _react2['default'].createElement('br', null),
+	        _react2['default'].createElement('br', null),
+	        _react2['default'].createElement(
+	          _reactBootstrapLibRow2['default'],
+	          null,
+	          _react2['default'].createElement(
+	            _reactBootstrapLibCol2['default'],
+	            { xs: 6 },
+	            _react2['default'].createElement(
+	              _reactBootstrapLibButton2['default'],
+	              { bsStyle: 'info', bsSize: 'small', href: '', block: true },
+	              '詳細資料'
+	            )
+	          ),
+	          _react2['default'].createElement(
+	            _reactBootstrapLibCol2['default'],
+	            { xs: 6 },
+	            _react2['default'].createElement(
+	              _reactBootstrapLibButton2['default'],
+	              { bsStyle: 'info', bsSize: 'small', href: '', block: true },
+	              '接任務'
+	            )
+	          )
+	        )
 	      )
 	    );
 
-	    this._handleClick = this._handleClick.bind(this);
 	    this.state = {
 	      isSearching: false,
 	      list: list
@@ -35224,7 +35290,7 @@
 	            { md: 10, mdOffset: 1 },
 	            _react2['default'].createElement(
 	              _reactBootstrapLibTabbedArea2['default'],
-	              { defaultActiveKey: 1, className: 'half-width-tab' },
+	              { defaultActiveKey: 2, className: 'half-width-tab' },
 	              _react2['default'].createElement(
 	                _reactBootstrapLibTabPane2['default'],
 	                { eventKey: 1, tab: '清單顯示' },
@@ -35503,9 +35569,21 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactBootstrapLibButton = __webpack_require__(392);
+
+	var _reactBootstrapLibButton2 = _interopRequireDefault(_reactBootstrapLibButton);
+
+	var _reactBootstrapLibCol = __webpack_require__(448);
+
+	var _reactBootstrapLibCol2 = _interopRequireDefault(_reactBootstrapLibCol);
+
 	var _reactBootstrapLibGrid = __webpack_require__(449);
 
 	var _reactBootstrapLibGrid2 = _interopRequireDefault(_reactBootstrapLibGrid);
+
+	var _reactBootstrapLibInput = __webpack_require__(459);
+
+	var _reactBootstrapLibInput2 = _interopRequireDefault(_reactBootstrapLibInput);
 
 	var _menu = __webpack_require__(480);
 
@@ -35592,12 +35670,28 @@
 	    _classCallCheck(this, Order);
 
 	    _get(Object.getPrototypeOf(Order.prototype), 'constructor', this).call(this, props);
+	    this._submit = this._submit.bind(this);
 	  }
 
 	  _createClass(Order, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      this.props.enableNavBackMode(true);
+	    }
+	  }, {
+	    key: '_submit',
+	    value: function _submit() {
+	      console.log('hi');
+	      var ongoingOrder = [{
+	        id: 3,
+	        store: "清玉",
+	        products: [{ id: 3, name: '特調蜂蜜檸檬', amount: 1, price: 45 }],
+	        pickup_addr: "捷運公館站 3 號出口",
+	        pickup_time: "8/23 13:25"
+	      }];
+
+	      this.props.setOngoingOrders(ongoingOrder);
+	      window.location = "#/";
 	    }
 	  }, {
 	    key: 'render',
@@ -35607,30 +35701,36 @@
 	        return _react2['default'].createElement(_menu2['default'], { key: menu.id, menu: menu });
 	      });
 
+	      //TODO: change this depends on the button clicked
 	      return _react2['default'].createElement(
 	        _reactBootstrapLibGrid2['default'],
 	        null,
 	        _react2['default'].createElement(
-	          Input,
+	          _reactBootstrapLibInput2['default'],
 	          { type: 'select', label: '取貨地點' },
 	          _react2['default'].createElement(
 	            'option',
 	            { value: 'current' },
-	            '(目前位置)台北市大安區羅斯福路四段1號'
+	            '(目前位置) 7-ELEVEN 辛亥門市'
 	          ),
 	          _react2['default'].createElement(
 	            'option',
 	            { value: 'favorite1' },
-	            '台北市中正區中山南路7號'
+	            '7-ELEVEN 敦親門市'
 	          ),
 	          _react2['default'].createElement(
 	            'option',
 	            { value: 'favorite2' },
-	            '台北市信義區台北101大樓'
+	            '7-ELEVEN 大台門市'
+	          ),
+	          _react2['default'].createElement(
+	            'option',
+	            { value: 'favorite3' },
+	            '7-ELEVEN 溫州門市'
 	          )
 	        ),
 	        _react2['default'].createElement(
-	          Input,
+	          _reactBootstrapLibInput2['default'],
 	          { type: 'select', label: '最多等待時間' },
 	          _react2['default'].createElement(
 	            'option',
@@ -35668,7 +35768,16 @@
 	            '50 分鐘'
 	          )
 	        ),
-	        menuList
+	        menuList,
+	        _react2['default'].createElement(
+	          _reactBootstrapLibCol2['default'],
+	          { style: { padding: "0" }, xs: 12 },
+	          _react2['default'].createElement(
+	            _reactBootstrapLibButton2['default'],
+	            { bsStyle: 'success', block: true, onClick: this._submit },
+	            '送出'
+	          )
+	        )
 	      );
 	    }
 	  }]);
@@ -35735,8 +35844,78 @@
 
 	var _reactBootstrapLibRow2 = _interopRequireDefault(_reactBootstrapLibRow);
 
-	var MenuItem = (function (_React$Component) {
-	  _inherits(MenuItem, _React$Component);
+	var NumberField = (function (_React$Component) {
+	  _inherits(NumberField, _React$Component);
+
+	  function NumberField(props) {
+	    _classCallCheck(this, NumberField);
+
+	    _get(Object.getPrototypeOf(NumberField.prototype), 'constructor', this).call(this, props);
+	    this.state = {
+	      value: 0
+	    };
+
+	    this.increase = this._increase.bind(this);
+	    this.decrease = this._decrease.bind(this);
+	  }
+
+	  _createClass(NumberField, [{
+	    key: '_increase',
+	    value: function _increase() {
+	      this.setState({ value: this.state.value + 1 });
+	    }
+	  }, {
+	    key: '_decrease',
+	    value: function _decrease() {
+	      this.setState({ value: this.state.value > 0 ? this.state.value - 1 : 0 });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var style = {
+	        plusBtn: {
+	          float: 'right'
+	        },
+	        minusBtn: {
+	          float: 'left'
+	        }
+	      };
+
+	      return _react2['default'].createElement(
+	        _reactBootstrapLibRow2['default'],
+	        null,
+	        _react2['default'].createElement(
+	          _reactBootstrapLibCol2['default'],
+	          { xs: 2 },
+	          _react2['default'].createElement(
+	            _reactBootstrapLibButton2['default'],
+	            { onClick: this.decrease, style: style.minusBtn, bsStyle: 'primary' },
+	            _react2['default'].createElement(_reactBootstrapLibGlyphicon2['default'], { glyph: 'minus' })
+	          )
+	        ),
+	        _react2['default'].createElement(
+	          _reactBootstrapLibCol2['default'],
+	          { xs: 8 },
+	          _react2['default'].createElement(_reactBootstrapLibInput2['default'], { value: this.state.value, type: 'text', bsSize: 'small' })
+	        ),
+	        _react2['default'].createElement(
+	          _reactBootstrapLibCol2['default'],
+	          { xs: 2 },
+	          _react2['default'].createElement(
+	            _reactBootstrapLibButton2['default'],
+	            { onClick: this.increase, style: style.plusBtn, bsStyle: 'primary' },
+	            _react2['default'].createElement(_reactBootstrapLibGlyphicon2['default'], { glyph: 'plus' })
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return NumberField;
+	})(_react2['default'].Component);
+
+	var MenuItem = (function (_React$Component2) {
+	  _inherits(MenuItem, _React$Component2);
 
 	  function MenuItem(props) {
 	    _classCallCheck(this, MenuItem);
@@ -35763,12 +35942,6 @@
 	        priceField: {
 	          textAlign: 'right'
 	        },
-	        plusBtn: {
-	          float: 'right'
-	        },
-	        minusBtn: {
-	          float: 'left'
-	        },
 	        optionRow: {
 	          paddingBottom: '1em'
 	        }
@@ -35778,15 +35951,18 @@
 	      var itemName = item.name,
 	          itemId = item.id;
 	      var optionData = new Array();
+	      var self = this;
 
 	      var genOption = function genOption(obj) {
-	        var id = obj.id,
+	        var itemId = obj.itemId,
+	            optId = obj.optId,
 	            option = obj.option,
 	            price = obj.price;
+	        var refName = ['itm', itemId, optId].join('-');
 
 	        return _react2['default'].createElement(
 	          'div',
-	          { key: id },
+	          { key: optId },
 	          _react2['default'].createElement(
 	            _reactBootstrapLibRow2['default'],
 	            { style: style.optionRow },
@@ -35809,33 +35985,7 @@
 	              )
 	            )
 	          ),
-	          _react2['default'].createElement(
-	            _reactBootstrapLibRow2['default'],
-	            null,
-	            _react2['default'].createElement(
-	              _reactBootstrapLibCol2['default'],
-	              { xs: 2 },
-	              _react2['default'].createElement(
-	                _reactBootstrapLibButton2['default'],
-	                { style: style.minusBtn, bsStyle: 'primary' },
-	                _react2['default'].createElement(_reactBootstrapLibGlyphicon2['default'], { glyph: 'minus' })
-	              )
-	            ),
-	            _react2['default'].createElement(
-	              _reactBootstrapLibCol2['default'],
-	              { xs: 8 },
-	              _react2['default'].createElement(_reactBootstrapLibInput2['default'], { defaultValue: '0', bsSize: 'small', type: 'number' })
-	            ),
-	            _react2['default'].createElement(
-	              _reactBootstrapLibCol2['default'],
-	              { xs: 2 },
-	              _react2['default'].createElement(
-	                _reactBootstrapLibButton2['default'],
-	                { style: style.plusBtn, bsStyle: 'primary' },
-	                _react2['default'].createElement(_reactBootstrapLibGlyphicon2['default'], { glyph: 'plus' })
-	              )
-	            )
-	          ),
+	          _react2['default'].createElement(NumberField, { ref: refName }),
 	          _react2['default'].createElement(
 	            _reactBootstrapLibRow2['default'],
 	            null,
@@ -35850,7 +36000,8 @@
 
 	      for (var i = 0; i < item.price.length; ++i) {
 	        optionData.push({
-	          id: i,
+	          itemId: itemId,
+	          optId: i,
 	          option: i < item.option.length ? item.option[i] : itemName,
 	          price: item.price[i]
 	        });
@@ -35880,8 +36031,8 @@
 	  return MenuItem;
 	})(_react2['default'].Component);
 
-	var Menu = (function (_React$Component2) {
-	  _inherits(Menu, _React$Component2);
+	var Menu = (function (_React$Component3) {
+	  _inherits(Menu, _React$Component3);
 
 	  function Menu(props) {
 	    _classCallCheck(this, Menu);
