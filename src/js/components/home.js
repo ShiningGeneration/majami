@@ -19,7 +19,45 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
 
-    let ordereds = [
+    let ordereds_help_me_take = [
+      {
+        id: 1,
+        products: [
+          { id: 1, name: '珍珠奶茶', amount: 1, price: 100 }
+        ],
+        pickup_addr: "捷運公館站 2 號出口",
+        pickup_time: "8/23 13:00"
+      },
+      {
+        id: 2,
+        products: [
+          { id: 1, name: '解放茶', amount: 1, price: 600 }
+        ],
+        pickup_addr: "台大正門口",
+        pickup_time: "8/23 23:30"
+      }
+    ];
+
+    let expireds_help_me_take = [
+      {
+        id: 1,
+        products: [
+          { id: 1, name: '茉莉綠茶', amount: 10, price: 100 }
+        ],
+        pickup_addr: "捷運公館站 2 號出口",
+        pickup_time: "8/5 13:00"
+      },
+      {
+        id: 2,
+        products: [
+          { id: 1, name: '解放茶', amount: 15, price: 600 }
+        ],
+        pickup_addr: "台大正門口",
+        pickup_time: "7/8 23:30"
+      }
+    ];
+
+    let ordereds_i_help_take = [
       {
         id: 1,
         products: [
@@ -38,7 +76,7 @@ export default class Home extends React.Component {
       }
     ];
 
-    let expireds = [
+    let expireds_i_help_take = [
       {
         id: 1,
         products: [
@@ -58,8 +96,10 @@ export default class Home extends React.Component {
     ]; 
 
     this.state = {
-      ordereds: ordereds,
-      expireds: expireds,
+      ordereds_i_help_take: ordereds_i_help_take,
+      ordereds_help_me_take: ordereds_help_me_take,
+      expireds_i_help_take: expireds_i_help_take,
+      expireds_help_me_take: expireds_help_me_take,
     };
   }
 
@@ -68,7 +108,32 @@ export default class Home extends React.Component {
   }
 
   render() {
-    let orderedItems = this.state.ordereds.map(item => {
+    let orderedItems_help_me_take = this.state.ordereds_help_me_take.map(item => {
+      let products = item.products.map(product => {
+      let style = {float:"right"};
+        return (
+          <span key={product.id}>
+            {/*FIXME: hardcoded style*/}
+            <span>{`${product.name} x${product.amount}`}</span> <span style={style}>{`NTD.${product.price}`}</span>
+            <br />
+          </span>
+        );
+      });
+
+      return (
+        <ListGroupItem
+          key={item.id} header={`訂單 # ${item.id}`}>
+            {products}
+          <span>{`取貨地點: ${item.pickup_addr}`}</span>
+          <br />
+          <span>{`取貨時間: ${item.pickup_time}`}</span>
+          <span style={{marginRight: '5px', 'float': 'right'}}>
+            <Button bsStyle='info' bsSize='xsmall'>拿到了</Button>
+          </span>
+        </ListGroupItem>
+      );
+    });
+    let orderedItems_i_help_take = this.state.ordereds_i_help_take.map(item => {
       let products = item.products.map(product => {
       let style = {float:"right"};
         return (
@@ -94,7 +159,29 @@ export default class Home extends React.Component {
       );
     });
 
-    let expiredItems = this.state.expireds.map(item => {
+    let expiredItems_i_help_take = this.state.expireds_i_help_take.map(item => {
+      let products = item.products.map(product => {
+      let style = {float:"right"};
+        return (
+          <span key={product.id}>
+            {/*FIXME: hardcoded style*/}
+            <span>{`${product.name} x${product.amount}`}</span> <span style={style}>{`NTD.${product.price}`}</span>
+            <br />
+          </span>
+        );
+      });
+
+      return (
+        <ListGroupItem
+          key={item.id} header={`訂單 # ${item.id}`}>
+            {products}
+          <span>{`取貨地點: ${item.pickup_addr}`}</span>
+          <br />
+          <span>{`取貨時間: ${item.pickup_time}`}</span>
+        </ListGroupItem>
+      );
+    });
+    let expiredItems_help_me_take = this.state.expireds_help_me_take.map(item => {
       let products = item.products.map(product => {
       let style = {float:"right"};
         return (
@@ -132,12 +219,12 @@ export default class Home extends React.Component {
               href='#/help-me-take'>+ 訂東西</Button>
             <Panel header={'進行中的訂單'} bsStyle='info'>
               <ListGroup fill>
-                {orderedItems}
+                {orderedItems_help_me_take}
               </ListGroup>
             </Panel>
             <Panel header={'歷史訂單'} bsStyle='warning'>
               <ListGroup fill>
-                {expiredItems}
+                {expiredItems_help_me_take}
               </ListGroup>
             </Panel>
           </TabPane>
@@ -147,12 +234,12 @@ export default class Home extends React.Component {
               href='#i-help-take'>+ 接任務</Button>
             <Panel header={'進行中的幫帶任務'} bsStyle='info'>
               <ListGroup fill>
-                {orderedItems}
+                {orderedItems_i_help_take}
               </ListGroup>
             </Panel>
             <Panel header={'已完成的幫帶任務'} bsStyle='warning'>
               <ListGroup fill>
-                {expiredItems}
+                {expiredItems_i_help_take}
               </ListGroup>
             </Panel>
           </TabPane>
