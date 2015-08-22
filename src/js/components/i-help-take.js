@@ -124,13 +124,13 @@ export default class Store extends React.Component {
         </Col>
         <div>
           <Col md={10} mdOffset={1}>
-          <TabbedArea defaultActiveKey={1} className="half-width-tab">
-          <TabPane eventKey={1} tab='清單顯示' >
-            {this.state.list}
-          </TabPane>
-          <TabPane eventKey={2} tab='地圖顯示'>
-          </TabPane>
-          </TabbedArea>
+            <TabbedArea defaultActiveKey={1} className="half-width-tab">
+            <TabPane eventKey={1} tab='清單顯示' >
+              {this.state.list}
+            </TabPane>
+            <TabPane eventKey={2} tab='地圖顯示'>
+            </TabPane>
+            </TabbedArea>
           </Col>
         </div>
       </Row>
