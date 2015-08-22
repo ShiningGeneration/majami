@@ -22,16 +22,20 @@ export default class Home extends React.Component {
     let ordereds_help_me_take = [
       {
         id: 1,
+        store: '茶湯會',
         products: [
-          { id: 1, name: '珍珠奶茶', amount: 1, price: 100 }
+          { id: 1, name: '翡翠檸檬', amount: 3, price: 49 },
+          { id: 2, name: '珍珠奶茶', amount: 2, price: 45 }
         ],
         pickup_addr: "捷運公館站 2 號出口",
         pickup_time: "8/23 13:00"
       },
       {
         id: 2,
+        store: '悟饕池上飯包',
         products: [
-          { id: 1, name: '解放茶', amount: 1, price: 600 }
+          { id: 1, name: '排骨飯包', amount: 4, price: 75 },
+          { id: 2, name: '焢肉飯包', amount: 5, price: 75 },
         ],
         pickup_addr: "台大正門口",
         pickup_time: "8/23 23:30"
@@ -41,35 +45,43 @@ export default class Home extends React.Component {
     let expireds_help_me_take = [
       {
         id: 1,
+        store: '50嵐',
         products: [
-          { id: 1, name: '茉莉綠茶', amount: 10, price: 100 }
+          { id: 1, name: '文山青茶', amount: 3, price: 20 },
+          { id: 2, name: '波霸奶茶', amount: 4, price: 30 }
         ],
         pickup_addr: "捷運公館站 2 號出口",
-        pickup_time: "8/5 13:00"
+        pickup_time: "8/21 13:00"
       },
       {
         id: 2,
+        store: '楊董燒肉便當店',
         products: [
-          { id: 1, name: '解放茶', amount: 15, price: 600 }
+          { id: 1, name: '雞排飯包', amount: 4, price: 80 },
+          { id: 2, name: '招牌飯包', amount: 2, price: 75 },
         ],
         pickup_addr: "台大正門口",
-        pickup_time: "7/8 23:30"
+        pickup_time: "8/21 23:30"
       }
     ];
 
     let ordereds_i_help_take = [
       {
         id: 1,
+        store: '茶湯會',
         products: [
-          { id: 1, name: '珍珠奶茶', amount: 1, price: 100 }
+          { id: 1, name: '翡翠檸檬', amount: 3, price: 49 },
+          { id: 2, name: '珍珠奶茶', amount: 2, price: 45 }
         ],
         pickup_addr: "捷運公館站 2 號出口",
         pickup_time: "8/23 13:00"
       },
       {
         id: 2,
+        store: '悟饕池上飯包',
         products: [
-          { id: 1, name: '解放茶', amount: 1, price: 6000 }
+          { id: 1, name: '排骨飯包', amount: 4, price: 75 },
+          { id: 2, name: '焢肉飯包', amount: 5, price: 75 },
         ],
         pickup_addr: "台大正門口",
         pickup_time: "8/23 23:30"
@@ -79,19 +91,23 @@ export default class Home extends React.Component {
     let expireds_i_help_take = [
       {
         id: 1,
+        store: '50嵐',
         products: [
-          { id: 1, name: '茉莉綠茶', amount: 10, price: 100 }
+          { id: 1, name: '文山青茶', amount: 3, price: 20 },
+          { id: 2, name: '波霸奶茶', amount: 4, price: 30 }
         ],
         pickup_addr: "捷運公館站 2 號出口",
-        pickup_time: "8/5 13:00"
+        pickup_time: "8/21 13:00"
       },
       {
         id: 2,
+        store: '楊董燒肉便當店',
         products: [
-          { id: 1, name: '解放茶', amount: 15, price: 6000 }
+          { id: 1, name: '雞排飯包', amount: 4, price: 80 },
+          { id: 2, name: '招牌飯包', amount: 2, price: 75 },
         ],
         pickup_addr: "台大正門口",
-        pickup_time: "7/8 23:30"
+        pickup_time: "8/21 23:30"
       }
     ]; 
 
@@ -122,7 +138,7 @@ export default class Home extends React.Component {
 
       return (
         <ListGroupItem
-          key={item.id} header={`訂單 # ${item.id}`}>
+          key={item.id} header={item.store}>
             {products}
           <span>{`取貨地點: ${item.pickup_addr}`}</span>
           <br />
@@ -147,7 +163,7 @@ export default class Home extends React.Component {
 
       return (
         <ListGroupItem
-          key={item.id} header={`訂單 # ${item.id}`}>
+          key={item.id} header={item.store}>
             {products}
           <span>{`取貨地點: ${item.pickup_addr}`}</span>
           <br />
@@ -170,7 +186,7 @@ export default class Home extends React.Component {
 
       return (
         <ListGroupItem
-          key={item.id} header={`訂單 # ${item.id}`}>
+          key={item.id} header={item.store}>
             {products}
           <span>{`取貨地點: ${item.pickup_addr}`}</span>
           <br />
@@ -192,7 +208,7 @@ export default class Home extends React.Component {
 
       return (
         <ListGroupItem
-          key={item.id} header={`訂單 # ${item.id}`}>
+          key={item.id} header={item.store}>
             {products}
           <span>{`取貨地點: ${item.pickup_addr}`}</span>
           <br />
