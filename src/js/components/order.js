@@ -96,26 +96,32 @@ export default class Order extends React.Component {
 
   render() {
     let style = {
-      item: {
-        'border': '0',
-        'border-radius': '0',
-        "padding": "0"
+      firstItem: {
+        border: '0',
+        borderRadius: '0',
+        padding: '0'
+      },
+      notFirstItem: {
+        border: '0',
+        borderRadius: '0',
+        padding: '0',
+        borderTop: '1px solid #ddd'
       },
       priceField: {
-        'textAlign': 'right'
+        textAlign: 'right'
       },
       plusBtn: {
-        'float': 'right'
+        float: 'right'
       },
       minusBtn: {
-        'float': 'left'
+        float: 'left'
       },
       optionRow: {
-        'padding-bottom': '1em'
+        paddingBottom: '1em'
       },
       typeName: {
-        'margin': "0",
-        "border-bottom": "1px solid"
+        margin: '0',
+        marginBottom: '10px'
       }
     };
 
@@ -169,7 +175,7 @@ export default class Order extends React.Component {
       }
 
       return (
-        <ListGroupItem key={itemId} style={style.item}>
+        <ListGroupItem key={itemId} style={itemId == 0 ? style.firstItem : style.notFirstItem}>
           <Row>
             <Col xs={12}>
               <h4>{itemName}</h4>
