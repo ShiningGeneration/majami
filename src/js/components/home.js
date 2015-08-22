@@ -133,25 +133,33 @@ export default class Home extends React.Component {
       <Grid>
         <Row>
           <Col md={12}>
-            <ButtonToolbar>
-              <ButtonGroup>
-                <Button>+ 幫我帶</Button>
-                <Button>+ 我幫帶</Button>
-              </ButtonGroup>
-            </ButtonToolbar>
           </Col>
         </Row>
         <Row>
           <Col md={12}>
-          <TabbedArea defaultActiveKey={1}>
-          <TabPane eventKey={1} tab='幫我帶'>
+          <TabbedArea defaultActiveKey={1} className="half-width-tab">
+          <TabPane eventKey={1} tab='幫我帶' >
+            <br />
+            <Button bsStyle="success" style={{'margin-bottom': '1em', 'width': '100%'}}>+ 新訂單</Button>
             <Panel header={'進行中的訂單'} bsStyle='info'>
               <ListGroup fill>
                 {orderedItems}
               </ListGroup>
             </Panel>
+            <Panel header={'歷史訂單'} bsStyle='warning'>
+              <ListGroup fill>
+                {expiredItems}
+              </ListGroup>
+            </Panel>
           </TabPane>
           <TabPane eventKey={2} tab='我幫帶'>
+            <br />
+            <Button bsStyle="success" style={{'margin-bottom': '1em', 'width': '100%'}}>+ 新訂單</Button>
+            <Panel header={'進行中的訂單'} bsStyle='info'>
+              <ListGroup fill>
+                {orderedItems}
+              </ListGroup>
+            </Panel>
             <Panel header={'歷史訂單'} bsStyle='warning'>
               <ListGroup fill>
                 {expiredItems}
@@ -159,10 +167,6 @@ export default class Home extends React.Component {
             </Panel>
           </TabPane>
           </TabbedArea>
-          <Nav bsStyle='pills' justified activeKey={1} onSelect={this.handleSelect}>
-            <NavItem eventKey={1} >進行中</NavItem>
-            <NavItem eventKey={2} >歷史訂單</NavItem>
-          </Nav>
           </Col>
         </Row>
 
