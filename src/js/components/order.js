@@ -12,12 +12,12 @@ var data = [{
   id: 0,
   content: [{
     id: 0,
-    name: "茉莉綠茶",
-    option: ['M'],
-    price: [20]
+    name: "特調蜂蜜檸檬",
+    option: ['L'],
+    price: [45]
   }, {
     id: 1,
-    name: "阿薩姆奶茶",
+    name: "阿薩姆紅茶",
     option: ['M', 'L'],
     price: [15, 20]
   }, {
