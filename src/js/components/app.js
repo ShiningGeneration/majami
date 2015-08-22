@@ -20,9 +20,9 @@ export default class App extends React.Component {
     this._goBack = this._goBack.bind(this);
 
     this.state = {
-      useBackNav: false
+      useBackNav: false,
       ongoingOrders: [],
-      expiredOrders:: [],
+      expiredOrders: [],
     }
   }
 
