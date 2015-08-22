@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Grid from 'react-bootstrap/lib/Grid';
+import Input from 'react-bootstrap/lib/Input';
 
 import Menu from './menu';
 
