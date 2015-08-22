@@ -9,6 +9,57 @@ import ListGroup from 'react-bootstrap/lib/ListGroup';
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import Row from 'react-bootstrap/lib/Row';
 
+class NumberField extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 0
+    }
+
+    this.increase = this._increase.bind(this);
+    this.decrease = this._decrease.bind(this);
+  }
+
+  _increase() {
+    this.setState({value: this.state.value + 1});
+  }
+
+  _decrease() {
+    this.setState({value: this.state.value > 0 ? this.state.value - 1 : 0});
+  }
+
+  render() {
+    let style = {
+      plusBtn: {
+        float: 'right'
+      },
+      minusBtn: {
+        float: 'left'
+      }
+    };
+
+    return (
+      <Row>
+        <Col xs={2}>
+          <Button onClick={this.decrease} style={style.minusBtn} bsStyle="primary">
+            <Glyphicon glyph='minus' />
+          </Button>
+        </Col>
+        <Col xs={8}>
+          <Input value={this.state.value} type="text" bsSize="small" />
+        </Col>
+        <Col xs={2}>
+          <Button onClick={this.increase} style={style.plusBtn} bsStyle="primary">
+            <Glyphicon glyph='plus' />
+          </Button>
+        </Col>
+      </Row>
+    );
+  }
+
+
+}
+
 class MenuItem extends React.Component {
   constructor(props) {
     super(props);
@@ -31,12 +82,6 @@ class MenuItem extends React.Component {
       priceField: {
         textAlign: 'right'
       },
-      plusBtn: {
-        float: 'right'
-      },
-      minusBtn: {
-        float: 'left'
-      },
       optionRow: {
         paddingBottom: '1em'
       }
@@ -45,12 +90,14 @@ class MenuItem extends React.Component {
     let item = this.props.item;
     let itemName = item.name, itemId = item.id;
     let optionData = new Array();
+    let self = this;
 
     let genOption = function (obj) {
-      let id = obj.id, option = obj.option, price = obj.price;
+      let itemId = obj.itemId, optId = obj.optId, option = obj.option, price = obj.price;
+      let refName = ['itm', itemId, optId].join('-');
 
       return (
-        <div key={id}>
+        <div key={optId}>
           <Row style={style.optionRow}>
             <Col xs={6}>
               <Label>{option}</Label>
@@ -59,21 +106,7 @@ class MenuItem extends React.Component {
               <Label>{"NT. " + price}</Label>
             </Col>
           </Row>
-          <Row>
-            <Col xs={2}>
-              <Button style={style.minusBtn} bsStyle="primary">
-                <Glyphicon glyph='minus' />
-              </Button>
-            </Col>
-            <Col xs={8}>
-              <Input defaultValue="0" bsSize="small" type="number" />
-            </Col>
-            <Col xs={2}>
-              <Button style={style.plusBtn} bsStyle="primary">
-                <Glyphicon glyph='plus' />
-              </Button>
-            </Col>
-          </Row>
+          <NumberField ref={refName} />
           <Row>
             <Col xs={12}>
               <Input placeholder="備註" bsSize="small" type="text" />
@@ -85,7 +118,8 @@ class MenuItem extends React.Component {
 
     for (let i = 0; i < item.price.length; ++i) {
       optionData.push({
-        id: i,
+        itemId: itemId,
+        optId: i,
         option: i < item.option.length ? item.option[i] : itemName,
         price: item.price[i]
       });
