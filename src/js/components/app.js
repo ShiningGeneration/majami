@@ -21,7 +21,21 @@ export default class App extends React.Component {
 
     this.state = {
       useBackNav: false
+      ongoingOrders: [],
+      expiredOrders:: [],
     }
+  }
+
+  _setOngoingOrders(ongoingOrders){
+    this.setState({
+      ongoingOrders: ongoingOrders
+    })
+  }
+
+  _setExpiredOrders(expiredOrders){
+    this.setState({
+      expriedOrders: expriedOrders
+    })
   }
 
   _enableNavBackMode(useBackNav) {
@@ -70,7 +84,7 @@ export default class App extends React.Component {
         {useBackNav ? backNav : listNav}
 
         <div style={style.container}>
-          <RouteHandler enableNavBackMode={this._enableNavBackMode} />
+          <RouteHandler enableNavBackMode={this._enableNavBackMode} setOngoingOrders={this._setOngoingOrders} setExpiredOrders={this._setExpiredOrders}/>
         </div>
       </div>
     );
