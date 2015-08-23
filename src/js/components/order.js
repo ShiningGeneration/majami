@@ -100,7 +100,7 @@ export default class Order extends React.Component {
         products: [
           { id: 3, name: '特調蜂蜜檸檬', amount: 1, price: 45 }
         ],
-        pickup_addr: "捷運公館站 3 號出口",
+        pickup_addr: "7-ELEVEN 辛亥門市",
         pickup_time: "8/23 13:25"
     }]
 
