@@ -33759,10 +33759,10 @@
 	      null,
 	      _react2['default'].createElement(
 	        _reactBootstrapLibListGroupItem2['default'],
-	        { header: '茶湯會 松山店', href: '#order' },
+	        { header: '清玉', href: '#order' },
 	        '滿200元外送',
 	        _react2['default'].createElement('br', null),
-	        '台北市信義區松山路531號 / 02-2726-2886',
+	        '106台北市大安區和平東路三段70號 / 02-2737-1787',
 	        _react2['default'].createElement('br', null),
 	        _react2['default'].createElement(_reactBootstrapLibGlyphicon2['default'], { glyph: 'star' }),
 	        _react2['default'].createElement(_reactBootstrapLibGlyphicon2['default'], { glyph: 'star' }),
@@ -35508,7 +35508,7 @@
 	        id: 3,
 	        store: "清玉",
 	        products: [{ id: 3, name: '特調蜂蜜檸檬', amount: 1, price: 45 }],
-	        pickup_addr: "捷運公館站 3 號出口",
+	        pickup_addr: "7-ELEVEN 辛亥門市",
 	        pickup_time: "8/23 13:25"
 	      }];
 
