@@ -18,10 +18,10 @@ export default class Store extends React.Component {
 
     let list = (
       <ListGroup>
-        <ListGroupItem header='茶湯會 松山店' href='#order'>
+        <ListGroupItem header='清玉' href='#order'>
           滿200元外送
           <br />
-          台北市信義區松山路531號 / 02-2726-2886
+          106台北市大安區和平東路三段70號 / 02-2737-1787
           <br />
           <Glyphicon glyph='star' />
           <Glyphicon glyph='star' />
